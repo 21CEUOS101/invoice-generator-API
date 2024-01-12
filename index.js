@@ -53,7 +53,7 @@ app.post('/generate-pdf', async (req, res) => {
             'single-process',
             '--no-zygote',
           ],
-          executablePath : process.env.NODE_ENV === 'production' ? process.env.PUPPETEER_EXECUTABLE_PATH : puppeteer.executablePath(),
+          executablePath : process.env.PUPPETEER_EXECUTABLE_PATH,
         });
         // Open a new page
         const page = await browser.newPage();
