@@ -128,16 +128,18 @@
                     <th>Product ID</th>
                     <th>Product Name</th>
                     <th>Quantity</th>
-                    <th>Price Of Each</th>
+                    <th>Price per Item</th>
+                    <th>Total Price</th>
                 </tr>
             </thead>
             <tbody>
-                <% products.forEach(product => { %>
+                <% products.forEach((product , i) => { %>
                     <tr>
                         <td><%= product.id %></td>
                         <td><%= product.name %></td>
                         <td><%= product.quantity %></td>
                         <td><%= product.price %></td>
+                        <td><%= t_price[i] %></td>
                     </tr>
                 <% }); %>
             </tbody>

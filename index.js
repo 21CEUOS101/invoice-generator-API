@@ -23,9 +23,12 @@ app.post('/generate-pdf', async (req, res) => {
   let totalAmount = 0;
   let totalQuantity = 0;
 
+  const t_price = [];
+
   products.map((p) => {
     totalAmount += (p?.price * p?.quantity);
     totalQuantity += p?.quantity;
+    t_price.push(p?.price * p?.quantity);
   });
 
   
@@ -36,6 +39,7 @@ app.post('/generate-pdf', async (req, res) => {
       products: products,
       totalQuantity: totalQuantity,
       totalAmount: totalAmount,
+      t_price : t_price,
       paymentType: req.body.paymentType,
       transactionDetails: req.body.transactionDetails,
     };
@@ -66,8 +70,8 @@ app.post('/generate-pdf', async (req, res) => {
         // Pipe the PDF file to the response stream
         const stream = fs.createReadStream(PDF_PATH);
         stream.pipe(res);
-        
-        // Delete the PDF file after piping it to the response
+            
+            // Delete the PDF file after piping it to the response
         stream.on('end', () => {
           fs.unlink(PDF_PATH, (err) => {
             if (err) {
