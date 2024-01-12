@@ -45,7 +45,14 @@ app.post('/generate-pdf', async (req, res) => {
     };
   try {
       
-        const browser = await puppeteer.launch();
+        const browser = await puppeteer.launch({
+          args: [
+            '--disable-setuid-sandbox',
+            '--no-sandbox',
+            'single-process',
+            '--no-zygote',
+          ]
+        });
         // Open a new page
         const page = await browser.newPage();
         const ejsContent = fs.readFileSync(EJS_PATH, 'utf-8');
