@@ -8,6 +8,7 @@ const app = express();
 const PORT = 3000;
 const PDF_PATH = path.join(__dirname, './output.pdf');
 const EJS_PATH = path.join(__dirname, './views/invoice.ejs');
+require('dotenv').config();
 
 // Middleware
 app.use(bodyParser.json());
@@ -51,7 +52,8 @@ app.post('/generate-pdf', async (req, res) => {
             '--no-sandbox',
             'single-process',
             '--no-zygote',
-          ]
+          ],
+          executablePath : process.env.NODE_ENV === 'production' ? process.env.PUPPETEER_EXECUTABLE_PATH : puppeteer.executablePath(),
         });
         // Open a new page
         const page = await browser.newPage();
