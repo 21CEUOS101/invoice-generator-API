@@ -54,7 +54,7 @@ app.post('/generate-pdf', async (req, res) => {
       
         const browser = await chromium.puppeteer.launch({
           args: chromium.args,
-          executablePath: process.env.CHROME_EXECUTABLE_PATH ||  await chromium.executablePath,
+          executablePath: process.env.NODE_ENV === 'production' ? process.env.PUPPETEER_EXECUTABLE_PATH : puppeteer.executablePath(),
           ignoreHTTPSErrors: true,
           headless: "new"
         });
