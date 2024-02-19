@@ -56,6 +56,7 @@ app.post('/generate-pdf', async (req, res) => {
           args: chromium.args,
           executablePath: process.env.CHROME_EXECUTABLE_PATH ||  await chromium.executablePath,
           ignoreHTTPSErrors: true,
+          headless: "new"
         });
         // Open a new page
         const page = await browser.newPage();
