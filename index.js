@@ -8,6 +8,9 @@ const app = express();
 const PORT = 3000;
 const PDF_PATH = path.join(__dirname, './output.pdf');
 const EJS_PATH = path.join(__dirname, './views/invoice.ejs');
+const cors = require('cors');
+const chromium = require('chrome-aws-lambda')
+app.use(cors());
 require('dotenv').config();
 
 // Middleware
@@ -16,6 +19,8 @@ app.set('view engine', 'ejs');
 app.use(express.static('public'));
 
 app.post('/generate-pdf', async (req, res) => {
+
+  console.log(req.body);
 
   const products = [];
 
@@ -42,18 +47,15 @@ app.post('/generate-pdf', async (req, res) => {
       totalAmount: totalAmount,
       t_price : t_price,
       paymentType: req.body.paymentType,
-      transactionDetails: req.body.transactionDetails,
+    transactionDetails: req.body.transactionDetails,
+      username : req.body.username,
     };
   try {
       
-        const browser = await puppeteer.launch({
-          args: [
-            '--disable-setuid-sandbox',
-            '--no-sandbox',
-            'single-process',
-            '--no-zygote',
-          ],
-          executablePath : puppeteer.executablePath() ,
+        const browser = await chromium.puppeteer.launch({
+          args: chromium.args,
+          executablePath: process.env.CHROME_EXECUTABLE_PATH ||  await chromium.executablePath,
+          ignoreHTTPSErrors: true,
         });
         // Open a new page
         const page = await browser.newPage();
