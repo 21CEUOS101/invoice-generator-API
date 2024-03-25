@@ -7,7 +7,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Invoice</title>
     <style>
-        /* Add your custom styles here */
         body {
         font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         margin: 20px;
@@ -107,18 +106,19 @@
 <body>
     <div class="invoice-container">
         <div class="header">
-            <h2>Stark Industries</h2>
+            <h2><%= company_name %></h2>
         </div>
 
         <div class="company-details">
-            <p>Address: 123 Main Street, Anytown, USA</p>
-            <p>Phone: +1 (555) 123-4567</p>
-            <p>GST No: ABC123XYZ456</p>
+            <p>Address: <%= company_address %></p>
+            <p>Phone: <%= company_contact_no %></p>
+            <p>GST No: <%= company_gst %></p>
         </div>
         
 
         <div class="bill-details">
-            <p>Cashier ID: C1221</p>
+            <p>Cashier ID: <%= cashier_id %></p>
+            <p>Cashier Name: <%= cashier_name %></p>
             <br/>
             <p>Customer Name: <%= username %></p>
             <p>Bill Date: <%= billDate %></p>

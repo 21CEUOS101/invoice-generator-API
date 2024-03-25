@@ -8,8 +8,8 @@ const app = express();
 const PORT = 3000;
 const PDF_PATH = path.join(__dirname, './output.pdf');
 const EJS_PATH = path.join(__dirname, './views/invoice.ejs');
-const cors = require('cors');
 const chromium = require('chrome-aws-lambda')
+const cors = require('cors');
 app.use(cors());
 require('dotenv').config();
 
@@ -19,8 +19,6 @@ app.set('view engine', 'ejs');
 app.use(express.static('public'));
 
 app.post('/generate-pdf', async (req, res) => {
-
-  console.log(req.body);
 
   const products = [];
 
@@ -37,8 +35,6 @@ app.post('/generate-pdf', async (req, res) => {
     t_price.push(p?.price * p?.quantity);
   });
 
-  
-
   const invoiceData = {
       billDate: req.body.billDate,
       billNumber: req.body.billNumber,
@@ -47,8 +43,14 @@ app.post('/generate-pdf', async (req, res) => {
       totalAmount: totalAmount,
       t_price : t_price,
       paymentType: req.body.paymentType,
-    transactionDetails: req.body.transactionDetails,
-      username : req.body.username,
+      transactionDetails: req.body.transactionDetails,
+      username: req.body.username,
+      company_name: req.body.company?.company_name,
+      company_address: req.body.company?.company_address,
+      company_contact_no: req.body.company?.contact_no,
+      company_gst : req.body.company?.company_gst,
+      cashier_id: req.body.cashier?.cashier_id,
+      cashier_name: req.body.cashier?.cashier_name,
     };
   try {
       
