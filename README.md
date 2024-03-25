@@ -41,7 +41,18 @@ POST /generate-pdf
     { "id": "005", "name": "Product 5", "quantity": 6, "price": 20 }
   ],
   "paymentType": "Online",
-  "transactionDetails": "Transaction ID: 7890123456"
+  "transactionDetails": "Transaction ID: 7890123456",
+  "username": "JohnDoe",
+  "company": {
+    "company_name": "Example Company",
+    "company_address": "123 Main St, City, Country",
+    "contact_no": "+1234567890",
+    "company_gst": "ABC123456789"
+  },
+  "cashier": {
+    "cashier_id": "123",
+    "cashier_name": "Jane Smith"
+  }
 }
 ```
 
@@ -63,13 +74,24 @@ curl -X POST -H "Content-Type: application/json" -d '{
     { "id": "005", "name": "Product 5", "quantity": 6, "price": 20 }
   ],
   "paymentType": "Online",
-  "transactionDetails": "Transaction ID: 7890123456"
-}' https://invoice-generator-api.onrender.com/generate-pdf --output invoice.pdf
+  "transactionDetails": "Transaction ID: 7890123456",
+  "username": "JohnDoe",
+  "company": {
+    "company_name": "Example Company",
+    "company_address": "123 Main St, City, Country",
+    "contact_no": "+1234567890",
+    "company_gst": "ABC123456789"
+  },
+  "cashier": {
+    "cashier_id": "123",
+    "cashier_name": "Jane Smith"
+  }
+}' https://purpit.onrender.com/generate-pdf --output invoice.pdf
 ```
 
 ## Hosted Link
 
-The API is hosted at [https://invoice-generator-api.onrender.com](https://invoice-generator-api.onrender.com).
+The API is hosted at [https://purpit.onrender.com](https://purpit.onrender.com).
 
 ## Setup
 
@@ -82,7 +104,7 @@ The API is hosted at [https://invoice-generator-api.onrender.com](https://invoic
 Clone the repository and install the dependencies:
 
 ```bash
-git clone https://github.com/your-username/invoice-generator-api.git
+git clone https://github.com/21CEUOS101/invoice-generator-api.git
 cd invoice-generator-api
 npm install
 ```
@@ -99,54 +121,7 @@ The server will run at `http://localhost:3000` by default. You can modify the po
 
 # Customizing Company Information
 
-If you wish to change the company name, address, phone number, or GST number in the generated invoices, follow these steps:
-
-1. Clone the repository to your local machine:
-
-    ```bash
-    git clone https://github.com/your-username/invoice-generator-api.git
-    cd invoice-generator-api
-    ```
-
-2. Navigate to the `views` directory. This is where the EJS template file is located.
-
-    ```bash
-    cd views
-    ```
-
-3. Open the `invoice-template.ejs` file in a text editor of your choice.
-
-4. Locate the section of the template that contains the company information. It looks like this:
-
-    ```html
-    <div class="header">
-        <h2>Company Name</h2>
-    </div>
-
-    <div class="company-details">
-        <p>Address: Company Address</p>
-        <p>Phone: Company Phone Number</p>
-        <p>GST No: Company GST Number</p>
-    </div>
-    ```
-
-5. Update the values within the tags for `h2` and `p` as needed. For example:
-
-    ```html
-    <div class="header">
-        <h2>My Custom Company Name</h2>
-    </div>
-
-    <div class="company-details">
-        <p>Address: Custom Company Address</p>
-        <p>Phone: +123 456 7890</p>
-        <p>GST No: ABC123456789</p>
-    </div>
-    ```
-
-6. Save the changes.
-
-This customized section specifically addresses the structure of your provided EJS code. Users can follow these steps to modify the company information in the generated invoices.
+To avoid manual changes in the company details, users can now add company details directly in the frontend.
 
 # Contributing
 
@@ -158,7 +133,7 @@ Thank you for considering contributing to the Invoice Generator API! Contributio
 2. Clone the forked repository to your local machine:
 
     ```bash
-    git clone https://github.com/your-username/invoice-generator-api.git
+    git clone https://github.com/21CEUOS101/invoice-generator-api.git
     ```
 
 3. Create a new branch for your changes:
@@ -180,7 +155,7 @@ Thank you for considering contributing to the Invoice Generator API! Contributio
     git push origin feature/your-feature-name
     ```
 
-6. Open a pull request on the [original repository](https://github.com/your-username/invoice-generator-api) to merge your changes.
+6. Open a pull request on the [original repository](https://github.com/21CEUOS101/invoice-generator-api) to merge your changes.
 
 ## Coding Standards
 
@@ -188,4 +163,4 @@ Please adhere to the existing coding standards and style used in the project. If
 
 ## Report Issues
 
-If you encounter any issues or have suggestions for improvements, please [open an issue](https://github.com/your-username/invoice-generator-api/issues) on GitHub.
+If you encounter any issues or have suggestions for improvements, please [open an issue](https://github.com/21CEUOS101/invoice-generator-api/issues) on GitHub.
